@@ -21,6 +21,8 @@
 
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x.h"
+#include "evalve_controller.h"
+#include "flow_sensor.h"
 #include <stdio.h>
 
 /** @addtogroup STM32F10x_StdPeriph_Template
@@ -32,7 +34,6 @@
 
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
- USART_InitTypeDef USART_InitStructure;
 
 /* Private function prototypes -----------------------------------------------*/
 #ifdef __GNUC__
@@ -52,16 +53,10 @@
   */
 int main(void)
 {
-  /*!< At this stage the microcontroller clock setting is already configured, 
-       this is done through SystemInit() function which is called from startup
-       file (startup_stm32f10x_xx.s) before to branch to application main.
-       To reconfigure the default setting of SystemInit() function, refer to
-       system_stm32f10x.c file
-     */     
-
-  /* Initialize LEDs, Key Button, LCD and COM port(USART) available on
-     STM3210X-EVAL board ******************************************************/
- 
+	SystemInit();
+	Evalve_Controller_Init();
+	Flow_Sensor_Init();
+	for(;;)
   return 0;
 }
 
